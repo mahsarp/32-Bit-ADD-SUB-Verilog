@@ -1,0 +1,15 @@
+module top_module(
+    input [31:0] a,
+    input [31:0] b,
+    input sub,
+    output [31:0] result
+);
+    reg [15:0] t1, t2;
+    assign t1={16{sub}} ^ b[15:0];
+    assign t2 ={16{sub}} ^ b[31:16];
+    reg c, co;
+    add16 lower_Half ( a[15:0], t1,  sub, result [15:0] , c);
+    add16 upper_Half ( a[31:16], t2,  c, result [31:16] , co ); 
+    
+
+endmodule
